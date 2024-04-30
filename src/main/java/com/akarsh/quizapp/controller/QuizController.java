@@ -2,6 +2,7 @@ package com.akarsh.quizapp.controller;
 
 import com.akarsh.quizapp.model.Question;
 import com.akarsh.quizapp.model.QuestionWrapper;
+import com.akarsh.quizapp.model.Response;
 import com.akarsh.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +27,11 @@ public class QuizController {
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestion(@PathVariable Integer id)
     {
         return quizService.getQuizQuestion(id);
+    }
+
+    @PostMapping("submit/{quizId}")
+    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer quizId, @RequestBody List<Response> responses)
+    {
+        return quizService.submitQuiz(quizId,responses);
     }
 }
